@@ -1,0 +1,22 @@
+--- app-orig.py	2020-07-21 11:04:52.000000000 +0300
++++ app.py	2020-07-21 11:13:36.000000000 +0300
+@@ -40,6 +40,9 @@
+ from airflow import settings
+ from airflow.utils.net import get_hostname
+ 
++# Add cors
++from flask_cors import CORS
++
+ csrf = CSRFProtect()
+ 
+ 
+@@ -67,6 +70,9 @@
+ 
+     csrf.init_app(app)
+ 
++    # Add cors
++    CORS(app, allow_headers=['Content-Type'])
++
+     app.config['TESTING'] = testing
+ 
+     airflow.load_login()
